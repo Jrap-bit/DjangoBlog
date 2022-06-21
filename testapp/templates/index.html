@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+<h1>Input your text below: </h1>
+    <form method="POST" action="counter">
+        {% csrf_token %}
+        <textarea name="text" rows="25" cols="100"></textarea><br>
+        <input type="submit">
+    </form>
+<h1>Hey, Welcome to the Index Page</h1>
+<div>
+    {% for feature in features %}
+    <h2>{{feature.name}}</h2>
+    <p>{{feature.details}}</p>
+    {% endfor %}
+</div>
+<div>
+    {% if user.is_authenticated %}
+    <h1>Hello Guys</h1>
+    {% else %}
+    <h1>Go Away Stranger</h1>
+    {% endif %}
+</div>
+<div>
+    {% if user.is_authenticated %}
+    <a href="/logout.html"><button value="Logout">Logout</button></a>
+    {% else %}
+    <a href="/register.html"><button value="Login/Sign Up">Login/Sign Up</button></a>
+    {% endif %}
+</div>
+</body>
+</html>
